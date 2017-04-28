@@ -1,25 +1,25 @@
 
 
-/*=====================¶ÌĞÅ½ÓÊÕÑéÖ¤ÈİÁªÔËÍ¨ĞÅ============================*/
+/*=====================çŸ­ä¿¡æ¥æ”¶éªŒè¯å®¹è”è¿é€šä¿¡============================*/
  public function test(){
-        $to='18329793492';
-        $num=mt_rand(1000,9999);
+        $to='';//è¦å‘é€çš„æ‰‹æœºå·ç 
+        $num=mt_rand(1000,9999);//è¦å‘é€çš„éªŒè¯ç (è¿™é‡Œå·²ä»¥å››ä½æ•°ä¸ºä¾‹)
         $datas=array($num);
         $this->sendTemplateSMS($to,$datas,1);
  }
  function sendTemplateSMS($to,$datas,$tempId)
 
  {  
-  $accountSid='8a216da85bad7876015bb40feb0402ec'; 
- $accountToken='e5024b29e1914ccbaadc58b2bc7e0f3c'; 
- $appId='8a216da85bad7876015bb40feb7802f1'; 
+  $accountSid=''; //ä½ çš„sid
+ $accountToken='';//ä½ çš„token 
+ $appId=''; //ä½ çš„appid
  $serverIP='app.cloopen.com'; 
  $serverPort='8883'; 
  $softVersion='2013-12-26'; 
      $rest = new \REST($serverIP,$serverPort,$softVersion);
      $rest->setAccount($accountSid,$accountToken); 
      $rest->setAppId($appId);  
-     // ·¢ËÍÄ£°å¶ÌĞÅ
+     // å‘é€æ¨¡æ¿çŸ­ä¿¡
      echo "Sending TemplateSMS to $to ";
 
      $result = $rest->sendTemplateSMS($to,$datas,$tempId); 
@@ -28,17 +28,17 @@
          break; 
      }
          if($result->statusCode!=0) {
-             echo "Ä£°å¶ÌĞÅ·¢ËÍÊ§°Ü!";
+             echo "æ¨¡æ¿çŸ­ä¿¡å‘é€å¤±è´¥!";
 
              echo "error code :" . $result->statusCode . "";
 
              echo "error msg :" . $result->statusMsg . "";
 
-             //ÏÂÃæ¿ÉÒÔ×Ô¼ºÌí¼Ó´íÎó´¦ÀíÂß¼­
+             //ä¸‹é¢å¯ä»¥è‡ªå·±æ·»åŠ é”™è¯¯å¤„ç†é€»è¾‘
          }else{
-             echo "Ä£°å¶ÌĞÅ·¢ËÍ³É¹¦!";
+             echo "æ¨¡æ¿çŸ­ä¿¡å‘é€æˆåŠŸ!";
 
-             // »ñÈ¡·µ»ØĞÅÏ¢
+             // è·å–è¿”å›ä¿¡æ¯
              $smsmessage = $result->TemplateSMS; 
              echo "dateCreated:".$smsmessage->dateCreated."";
 
